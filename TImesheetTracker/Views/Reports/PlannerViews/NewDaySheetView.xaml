@@ -1,0 +1,48 @@
+﻿<UserControl x:Class="TImesheetTracker.Views.NewDaySheetView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:cal ="http://www.caliburnproject.org"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" >
+    <Border Background="#FF2E2E2E">
+            <Grid Margin="20">            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="AUTO"/>
+                <RowDefinition Height="AUTO"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="AUTO"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0">
+                <TextBlock Text="Create new day sheet" HorizontalAlignment="Center" Foreground="LightGray" FontSize="16"/>
+                <DatePicker FontSize="16" BorderBrush="LightGray"  Foreground="LightGray" SelectedDate="{Binding Date, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center"/>
+                <Separator Margin="10"/>
+                <TextBox Margin="20,0,20,0" FontSize="16" Foreground="LightGray" Text="{Binding TimeAvailable, UpdateSourceTrigger=PropertyChanged}"  Style="{StaticResource MaterialDesignFloatingHintTextBox}"  materialDesign:HintAssist.Hint="Enter how much time is available to spend..."/>
+                <TextBox Margin="20,10,20,0" FontSize="16" Foreground="LightGray" Text="{Binding TimeSpent, UpdateSourceTrigger=PropertyChanged}"  Style="{StaticResource MaterialDesignFloatingHintTextBox}"  materialDesign:HintAssist.Hint="Enter how much time spent..."/>
+                <Separator Margin="10"/>
+            </StackPanel>            
+            <TextBlock Grid.Row="1" FontSize="16" Foreground="LightGray" HorizontalAlignment="Center" Text="Tasks"/>
+            <ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="200" Grid.Row="2">
+                <ItemsControl x:Name="TaskList" ItemsSource="{Binding Tasks}" Foreground="LightGray">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <ContentControl cal:View.Model="{Binding .}"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+            <StackPanel Grid.Row="3">
+                <Button Margin="10" cal:Message.Attach="[Event Click] = [Action CreateNewTask()]">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Plus" Height="19"/>
+                        <TextBlock Text="Task"/>
+                    </StackPanel>
+                </Button>
+                <Separator Grid.Row="3"/>
+                <Button Grid.Row="3" Margin="10,10,10,-5"   cal:Message.Attach="[Event Click] = [Action CreateNew()]" >
+                    <materialDesign:PackIcon Kind="ContentSaveOutline" Height="25" Width="25"/>
+
+                </Button>
+            </StackPanel>
+            
+        </Grid>
+    </Border>
+</UserControl>

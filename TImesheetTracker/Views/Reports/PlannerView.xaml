@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="TImesheetTracker.Views.PlannerView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:cal="http://www.caliburnproject.org">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions> 
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        
+        <ListView Margin="10" HorizontalAlignment="Left" ScrollViewer.CanContentScroll="False" Grid.ColumnSpan="1" Grid.Row="0" Grid.Column="0" ItemsSource="{Binding Days}" SelectedItem="{Binding SelectedDay}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ContentControl cal:View.Model="{Binding .}" />                    
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Grid Grid.Column="1" Grid.ColumnSpan="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <ContentControl x:Name="NewDay" Grid.Row="0" cal:View.Model="{Binding NewDay}"/>
+            <Border Background="#FF494949" Grid.Row="1"/>
+            <ContentControl x:Name="EditDay" Grid.Row="1" cal:View.Model="{Binding DayCRUD, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        </Grid>       
+    </Grid>
+</UserControl>

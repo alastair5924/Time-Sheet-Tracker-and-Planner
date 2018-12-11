@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="TImesheetTracker.Views.SaveContextView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+             Width="800" Background="#FF2C112A">
+        <StackPanel Margin="30">
+        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+            <TextBlock FontSize="16" VerticalAlignment="Bottom" Text="Save Data and Reports" Foreground="LightGray" Margin="10,0"/>
+            <materialDesign:PackIcon Margin="0,-2" VerticalAlignment="Bottom" Height="20" Width="20" Kind="ContentSaveOutline" Foreground="LightGray" />
+        </StackPanel>
+        <Separator Margin="10"/>
+
+        <CheckBox x:Name="dataCheck" IsChecked="{Binding DataToSave}" Content="Create Data File?" Margin="5" Foreground="LightGray"/>
+            <TextBox materialDesign:HintAssist.Hint="Name of data file..." Text="{Binding DataLocation, UpdateSourceTrigger=PropertyChanged}" Margin="5" 
+                 IsEnabled="{Binding ElementName=dataCheck, Path=IsChecked}" Foreground="LightGray">
+            </TextBox>
+            <CheckBox x:Name="reportCheck"  IsChecked="{Binding ReportToSave}" Content="Create Report?" Margin="5" Foreground="LightGray"/>
+            <TextBox materialDesign:HintAssist.Hint="Name of report file..." Text="{Binding ReportLocation, UpdateSourceTrigger=PropertyChanged}" Margin="5"
+                 IsEnabled="{Binding ElementName=reportCheck, Path=IsChecked}" Foreground="LightGray"/>
+            <Button FontSize="16" Foreground="LightGray" Margin="0,15,0,10" VerticalAlignment="Bottom" Grid.Row="1" Grid.Column="1"
+                Background="{x:Null}" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Content="OK"/>
+        </StackPanel>
+    
+</UserControl>

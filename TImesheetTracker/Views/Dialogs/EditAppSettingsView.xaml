@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="TImesheetTracker.Views.EditAppSettingsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:cal ="http://www.caliburnproject.org"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+             Background="#FF2C112A" Width="800">
+    <StackPanel VerticalAlignment="Center" Margin="20">
+        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+            <TextBlock FontSize="16" VerticalAlignment="Bottom" Text="Settings" Foreground="LightGray" Margin="10,0"/>
+            <materialDesign:PackIcon Margin="0,-2" VerticalAlignment="Bottom" Height="20" Width="20" Kind="Settings" Foreground="LightGray" />
+        </StackPanel>
+        <Separator Margin="10"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="45"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBox Grid.Row="0" Margin="20" Text="{Binding DataFileLocation}" Foreground="LightGray" materialDesign:HintAssist.Hint="Enter the path to the data files..."/>
+            <Button Grid.Row="0" Grid.Column="1" Content="..." cal:Message.Attach="[Event Click] = [Action OpenFileDialog(0)]"/>
+            <TextBox Grid.Row="1" Margin="20" Text="{Binding ReportFileLocation}" Foreground="LightGray" materialDesign:HintAssist.Hint="Enter the path to the reports files..."/>
+            <Button Grid.Row="1" Grid.Column="1" Content="..." cal:Message.Attach="[Event Click] = [Action OpenFileDialog(1)]"/>
+
+        </Grid>
+        
+        <Button VerticalAlignment="Bottom" FontSize="16" Foreground="LightGray" Margin="0,15,0,10" Grid.Row="1" Grid.Column="1" Background="{x:Null}" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Content="OK" />
+
+    </StackPanel>
+</UserControl>
